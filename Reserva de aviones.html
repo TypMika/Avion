@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+</head>
+
+<body>
+    <div class="container mt-5" id="app">
+        <button @click.prevent="generarasientos">Souka</button>
+        <h3>{{titulo}}</h3>
+        <!--Funcionalidad de los asientos-->
+        <div v-if="oculto==1">
+            <TABLE BORDER="1">
+
+                <td style="margin: 0; padding: 0;list-style: none;">
+                    <th class="list-group-item" style=" padding-top: 10px;" v-for="(asiento, index) in asientos" v-if="asiento.precio==500">
+                        {{index+1}} <img v-if="asiento.status == 0" v-bind:src="'image/'+libre" width="50" height="50">
+                    </th>
+
+                </td>
+                <td style="margin: 0; padding: 0;list-style: none;">
+                    <th class="list-group-item" style=" padding-top: 10px;" v-for="(asiento, index) in asientos" v-if="asiento.precio==400">
+                        {{index+1}} <img v-if="asiento.status == 0" v-bind:src="'image/'+libre" width="50" height="50">
+                    </th>
+
+                </td>
+                <td style="margin: 0; padding: 0;list-style: none;">
+                    <th class="list-group-item" style=" padding-top: 10px;" v-for="(asiento, index) in asientos" v-if="asiento.precio==300">
+                        {{index+1}} <img v-if="asiento.status == 0" v-bind:src="'image/'+libre" width="50" height="50">
+                    </th>
+
+                </td>
+                <td style="margin:0px;
+                padding: 0;
+                list-style: none; width: 70px;">
+                    <th>
+
+                    </th>
+                </td>
+                <td style="margin: 0; padding: 0;list-style: none;">
+                    <th class="list-group-item" style=" padding-top: 10px;" v-for="(asiento, index) in asientos" v-if="asiento.precio==200">
+                        {{index+1}} <img v-if="asiento.status == 0" v-bind:src="'image/'+libre" width="50" height="50">
+                    </th>
+
+                </td>
+                <td style="margin: 0; padding: 0;list-style: none;">
+                    <th class="list-group-item" style=" padding-top: 10px;" v-for="(asiento, index) in asientos" v-if="asiento.precio==100">
+                        {{index+1}} <img v-if="asiento.status == 0" v-bind:src="'image/'+libre" width="50" height="50">
+                    </th>
+
+                </td>
+                <td style="margin: 0; padding: 0;list-style: none;">
+                    <th class="list-group-item" style=" padding-top: 10px;" v-for="(asiento, index) in asientos" v-if="asiento.precio==50">
+                        {{index+1}} <img v-if="asiento.status == 0" v-bind:src="'image/'+libre" width="50" height="50">
+                    </th>
+
+                </td>
+
+
+
+
+            </TABLE>
+
+        </div>
+
+
+
+        <div class="alert alert-success " role="alert ">
+            <h4 class="alert-heading ">Ticket!</h4>
+            <p>Gracias por comprar en aerolineas UTRM</p>
+            <hr>
+            <p class="mb-0 ">El costo tal de su compra es
+                <h3 class="alert-heading ">{{preciototal}} $</h3> mas un iva del:
+                <h2 class="alert-heading ">{{iva}}</h2>
+            </p>
+        </div>
+
+
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js "></script>
+</body>
+
+<script src="./js/vue.js "></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            titulo: 'Aeropuerto UTRM ',
+            tareas: [],
+            asientos: [],
+            oculto: 0,
+            nuevaTarea: '',
+            estado: null,
+            IndicadorDeModificacion: 0,
+            IndicadorDeRegistro: 1,
+            index: 0,
+            costo_servicio: 0,
+            libre: "libre.jpg ",
+            nolibre: "ocupado.jpg ",
+            preciototal: 0,
+            iva: 0,
+
+        },
+        methods: {
+            generarasientos() {
+
+                for (var a = 0; a < 30; a++) {
+
+                    this.asientos.push({
+                        status: 0,
+                        precio: 500,
+
+                    });
+
+                }
+                for (var b = 0; b < 30; b++) {
+
+                    this.asientos.push({
+                        status: 0,
+                        precio: 400
+                    });
+
+                }
+                for (var c = 0; c < 30; c++) {
+
+                    this.asientos.push({
+                        status: 0,
+                        precio: 300
+                    });
+
+                }
+                for (var d = 0; d < 30; d++) {
+
+                    this.asientos.push({
+                        status: 0,
+                        precio: 200
+                    });
+
+                }
+                for (var e = 0; e < 30; e++) {
+
+                    this.asientos.push({
+                        status: 0,
+                        precio: 100
+                    });
+
+                }
+                for (var f = 0; f < 30; f++) {
+
+                    this.asientos.push({
+                        status: 0,
+                        precio: 50
+                    });
+
+                }
+                this.oculto = 1;
+            },
+            cobrasion() {
+                this.iva = this.preciototal * 0.16
+                localStorage.setItem('UTRM2', JSON.stringify(this.asientos));
+                localStorage.setItem('costo', this.preciototal);
+                localStorage.setItem('iva', this.iva);
+
+            },
+            desocupado(index) {
+                console.log(index);
+                if (this.asientos[index].status == 1) {
+                    this.asientos[index].status = 0
+                    this.preciototal = this.preciototal - this.asientos[index].costo
+                };
+                this.cobrasion();
+                localStorage.setItem('UTRM2', JSON.stringify(this.asientos));
+                localStorage.setItem('costo', this.preciototal);
+
+            },
+            ocupado(index) {
+                console.log(index);
+                if (this.asientos[index].status == 0) {
+                    this.asientos[index].status = 1
+                    this.preciototal = this.preciototal + this.asientos[index].costo
+                };
+                this.cobrasion();
+                localStorage.setItem('UTRM2', JSON.stringify(this.asientos));
+                localStorage.setItem('costo', this.preciototal);
+
+            },
+            guardarDatosModificados(index) {
+
+                this.tareas[this.index].nombre = this.nuevaTarea;
+                this.tareas[this.index].estado = this.estado;
+                this.tareas[this.index].costo_servicio = this.costo_servicio;
+                this.IndicadorDeModificacion = 0;
+                this.IndicadorDeRegistro = 1;
+                this.limpiarDatos();
+                localStorage.setItem('UTRM', JSON.stringify(this.tareas));
+
+            },
+            limpiarDatos() {
+                this.nuevaTarea = '';
+                this.estado = null;
+                this.costo_servicio = 0;
+                localStorage.setItem('UTRM', JSON.stringify(this.tareas));
+            },
+
+            agregartarea() {
+                this.tareas.push({
+                    nombre: this.nuevaTarea,
+                    estado: this.estado,
+                    costo_servicio: this.costo_servicio,
+                });
+                this.limpiarDatos();
+                localStorage.setItem('UTRM', JSON.stringify(this.tareas));
+            },
+            editartarea(index) {
+                this.tareas[index].estado = "1 ";
+                localStorage.setItem('UTRM', JSON.stringify(this.tareas));
+            },
+            eliminar(index) {
+                this.tareas.splice(index, 1);
+                localStorage.setItem('UTRM', JSON.stringify(this.tareas));
+            },
+            modificar(index) {
+                this.index = index;
+                this.nuevaTarea = this.tareas[index].nombre;
+                this.estado = this.tareas[index].estado;
+                this.costo_servicio = this.tareas[index].costo_servicio;
+                this.IndicadorDeModificacion = 1;
+                this.IndicadorDeRegistro = 0;
+                localStorage.setItem('UTRM', JSON.stringify(this.tareas));
+
+            },
+        },
+        created() {
+            this.iva = +localStorage.getItem("iva ");
+            this.preciototal = +localStorage.getItem('costo');
+            let datosDB = JSON.parse(localStorage.getItem('UTRM2'));
+            if (datosDB === null) {
+                this.sdadatos = [];
+            } else {
+                this.asientos = datosDB;
+
+            }
+        },
+    })
+</script>
+
+
+</html>
